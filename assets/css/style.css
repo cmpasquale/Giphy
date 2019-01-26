@@ -1,4 +1,51 @@
-body{
-    background: url("../images/Familyguysimpsons0.jpg");
+body, html {
+    height: 100%;
+    background-image: url("https://images.fastcompany.net/image/upload/w_1280,f_auto,q_auto,fl_lossy/wp-cms/uploads/2016/04/3059219-poster-1-how-do-you-redesign-the-simpsons.jpg");
+    background-position: center;
+    background-size: cover;
+  }
+  
+  
+  .lead{
+  text-align: center;
+   margin-top: 100px;
+  }
+  
+  
+  h1{
+    margin-left: 20%;
+    margin-right: 20%;  
+  }
+  #welcome{
+    margin-left: 20%;
+    margin-right: 20%; 
+    width: 800px;
+   
+  }
+  
+  .container-button{
+    margin-left: 35%;
+    margin-right: 35%; 
+    padding: 10px;
+    font-family: 'Rock Salt', cursive;
+    font-size: 15px;
+    width: 40%;
+  }
+  
+  #searchInput{
+    width: 275px;
+    font-family: 'Rock Salt', cursive;
+    text-align: center;
+   
+  }
+  .button2{
+    font-family: 'Rock Salt', cursive;
+  }
+.container{
+background: white;
+opacity: 20%;
+
 
 }
+    
+   
