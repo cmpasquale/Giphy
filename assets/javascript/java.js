@@ -20,24 +20,26 @@
 
 // - - - 
 
-var characterscomp = ["homer simpson", "marge simpson", "bart simpson", "lisa simpson", "maggie simpson", "abraham simpson",  "mona simpson", "patty bouvier", "selma bouvier", "jaqueline bouvier", "herbert powell","ling bouvier", "ned flanders", "maud flanders", "rod flanders", "todd flanders", "moe szyslak","barney gumble", "monty burns", "waylon smithers", "lenny leonard", "carl carlson", "seymour skinner", "edna krabappel", "gary chalmers", "miss hoover", "willie", "otto mann", "apu nahasapeemapetilon", "nelson muntz","milhouse van houten", "martin prince", "ralph wiggum","timothy lovejoy", "clancy wiggum","duffman","krusty the clown","sideshow bob"]
+var characterscomp = ["homer simpson", "marge simpson", "bart simpson", "lisa simpson", "maggie simpson", "abraham simpson", "mona simpson", "patty bouvier", "selma bouvier", "jaqueline bouvier", "herbert powell", "ling bouvier", "ned flanders", "maud flanders", "rod flanders", "todd flanders", "moe szyslak", "barney gumble", "monty burns", "waylon smithers", "lenny leonard", "carl carlson", "seymour skinner", "edna krabappel", "gary chalmers", "miss hoover", "willie", "otto mann", "apu nahasapeemapetilon", "nelson muntz", "milhouse van houten", "martin prince", "ralph wiggum", "timothy lovejoy", "clancy wiggum", "duffman", "krusty the clown", "sideshow bob"];
 
 
-// var topics = ["Homer Simpson", "Marge Simpson", "Bart Simpson", "Lisa Simpson", "Maggie Simpson"]
+var topics = ["Homer Simpson", "Marge Simpson", "Bart Simpson", "Lisa Simpson", "Maggie Simpson"];
 
-// createBtn()
+var uinput = [""];
 
-// function createBtn() {
-//   for (var i = 0; i < topics.length; i++)
-//   console.log(topics[i]) 
-//   var people = $('<button>');
-//   people.addClass("btn btn-light")
-//   people.attr("data-person", topics[i]);
-//   people.text(topics[i])
-//   $(".container-button").append(people)   
-//   };
+createBtn();
+function createBtn() {
+  for (var i = 0; i < topics.length; i++) {
+    //console.log(topics[i]) 
+    var people = $("<button>");
+    people.addClass("btn btn-light")
+    people.attr("data-person", topics[i]);
+    people.text(topics[i])
+    $(".container-button").append(people)
+  };
+};
 
-//   $(".container-button").append(people)   
+
 
 
 
@@ -77,8 +79,8 @@ $(".gif").on("click", function () {
   // If the clicked image's state is still, update its src attribute to what its data-animate value is.
   // Then, set the image's data-state to animate
   // Else set src to the data-still value
-  if (state === "still") {
-    $(this).attr("src", $(this).attr("data-animate"));
+  if (state === "data-animate") {
+    $(this).attr("src", $(this).attr("still"));
     $(this).attr("data-state", "animate");
   } else {
     $(this).attr("src", $(this).attr("data-still"));
