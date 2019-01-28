@@ -65,7 +65,7 @@ function createBtn() {
 //i < 10 to only grab 10 images per brief
 // add gifs to html in container
 
-$("button").on("click", function grab () {
+$("button").on("click", function () {
   $("#gifs-appear-here").empty();
   var person = $(this).attr("data-person");
   var queryURL =
@@ -85,9 +85,30 @@ $("button").on("click", function grab () {
       var personImage = $("<img>");
       personImage.attr("id", "gifs");
       personImage.attr("src", results[i].images.fixed_height.url);
+      personImage.attr('data-state', "still");
       gifDiv.prepend(p);
       gifDiv.prepend(personImage);
       $("#gifs-appear-here").prepend(gifDiv);
     }
   });
 });
+
+
+$('#gifs').on("click", "img", function () {
+  // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+  var state = $(this).attr("data-state");
+  // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+  // Then, set the image's data-state to animate
+  // Else set src to the data-still value
+  if (state === "still") {
+    $(this).attr("src", $(this).attr("data-animate"));
+    $(this).attr("data-state", "animate");
+  } else {
+    $(this).attr("src", $(this).attr("data-still"));
+    $(this).attr("data-state", "still");
+  }
+});
+
+
+
+
