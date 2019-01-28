@@ -19,8 +19,7 @@
 // 8. **Rejoice**! You just made something really cool.
 
 // - - -
-
-  var characterscomp = ["homer simpson", "marge simpson", "bart simpson", "lisa simpson", "maggie simpson", "abraham simpson", "mona simpson", "patty bouvier", "selma bouvier", "jaqueline bouvier", "herbert powell", "ling bouvier", "ned flanders", "maud flanders", "rod flanders", "todd flanders", "moe szyslak", "barney gumble", "monty burns", "waylon smithers", "lenny leonard", "carl carlson", "seymour skinner", "edna krabappel", "gary chalmers", "miss hoover", "willie", "otto mann", "apu nahasapeemapetilon", "nelson muntz", "milhouse van houten", "martin prince", "ralph wiggum", "timothy lovejoy", "clancy wiggum", "duffman", "krusty the clown", "sideshow bob"];
+var characterscomp = ["homer simpson", "marge simpson", "bart simpson", "lisa simpson", "maggie simpson", "abraham simpson", "mona simpson", "patty bouvier", "selma bouvier", "jaqueline bouvier", "herbert powell", "ling bouvier", "ned flanders", "maud flanders", "rod flanders", "todd flanders", "moe szyslak", "barney gumble", "monty burns", "waylon smithers", "lenny leonard", "carl carlson", "seymour skinner", "edna krabappel", "gary chalmers", "miss hoover", "willie", "otto mann", "apu nahasapeemapetilon", "nelson muntz", "milhouse van houten", "martin prince", "ralph wiggum", "timothy lovejoy", "clancy wiggum", "duffman", "krusty the clown", "sideshow bob"];
 
 var topics = [
   "Homer Simpson",
@@ -43,23 +42,19 @@ function createBtn() {
     people.attr("data-person", topics[i]);
     people.text(topics[i]);
     $(".container-button").append(people);
-  
+
   }
 
   // // capture user input and create new button
   $("#sbutton").on("click", function (event) {
     event.preventDefault();
     var charactersearch = $("#searchInput").val().trim();
-    // charactersearch.addClass("btn btn-light");
-    // charactersearch.attr("data-person", topics[i]);
-    // charactersearch.text(topics[i]);
+    people.attr("data-person", topics[i]);
     topics.push(charactersearch);
     createBtn();
-  
-   
   });
 
-};
+
 
 // click function to call to API for Gifs
 //i < 10 to only grab 10 images per brief
@@ -84,30 +79,23 @@ $("button").on("click", function () {
       var p = $("<p>").text("Rating: " + rating);
       var personImage = $("<img>");
       personImage.attr("id", "gifs");
-      personImage.attr("src", results[i].images.fixed_height.url);
-      personImage.attr('data-state', "still");
+      personImage.attr("src", results[i].images.fixed_height_still.url);
+      personImage.attr("data-alt", results[i].images.fixed_height.url )
       gifDiv.prepend(p);
       gifDiv.prepend(personImage);
       $("#gifs-appear-here").prepend(gifDiv);
+      personImage.on("click", function () {
+        var img = $(this);
+        var src = img.attr("src");
+        var imgAlt = img.attr("data-alt");
+        img.attr("src", imgAlt);
+        img.attr("data-alt", src);
+      });
     }
   });
 });
 
-
-$('#gifs').on("click", "img", function () {
-  // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-  var state = $(this).attr("data-state");
-  // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-  // Then, set the image's data-state to animate
-  // Else set src to the data-still value
-  if (state === "still") {
-    $(this).attr("src", $(this).attr("data-animate"));
-    $(this).attr("data-state", "animate");
-  } else {
-    $(this).attr("src", $(this).attr("data-still"));
-    $(this).attr("data-state", "still");
-  }
-});
+};
 
 
 
