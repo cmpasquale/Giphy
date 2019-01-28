@@ -48,7 +48,20 @@ body, html {
 background: white;
 opacity: 20%;
 
+}
+#gifs{
+padding: 8px;
+border: 4px;
+border-style: solid;
+border-color: black;
+margin: 15%;
+ 
+}
+
+p{
+  font-family: 'Rock Salt', cursive;
+  text-align: center;
+
 
 }
-    
    
