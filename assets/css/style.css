@@ -20,9 +20,10 @@ body, html {
     width: 80%;
 }
 .container{
-background: white;
+background: whitesmoke;
 width: 80%;
 margin-top: 10px;
+text-align: center;
 }
 #gifs{
 padding: 8px;

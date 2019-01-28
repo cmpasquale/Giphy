@@ -35,7 +35,7 @@ console.log(characterscomp);
 // create buttons for initial topics
 createBtn();
 function createBtn() {
-  $(".container-button").empty();
+  $("#cb").empty();
   for (var i = 0; i < topics.length; i++) {
     var people = $("<button>");
     people.addClass("btn btn-light");
@@ -52,6 +52,9 @@ function createBtn() {
     people.attr("data-person", topics[i]);
     topics.push(charactersearch);
     createBtn();
+    
+  
+
   });
 
 
@@ -94,6 +97,7 @@ $("button").on("click", function () {
     }
   });
 });
+  $("#cb").append(people);
 
 };
 
