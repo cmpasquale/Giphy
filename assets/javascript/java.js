@@ -18,88 +18,76 @@
 
 // 8. **Rejoice**! You just made something really cool.
 
-// - - - 
+// - - -
 
-// var characterscomp = ["homer simpson", "marge simpson", "bart simpson", "lisa simpson", "maggie simpson", "abraham simpson", "mona simpson", "patty bouvier", "selma bouvier", "jaqueline bouvier", "herbert powell", "ling bouvier", "ned flanders", "maud flanders", "rod flanders", "todd flanders", "moe szyslak", "barney gumble", "monty burns", "waylon smithers", "lenny leonard", "carl carlson", "seymour skinner", "edna krabappel", "gary chalmers", "miss hoover", "willie", "otto mann", "apu nahasapeemapetilon", "nelson muntz", "milhouse van houten", "martin prince", "ralph wiggum", "timothy lovejoy", "clancy wiggum", "duffman", "krusty the clown", "sideshow bob"];
+  var characterscomp = ["homer simpson", "marge simpson", "bart simpson", "lisa simpson", "maggie simpson", "abraham simpson", "mona simpson", "patty bouvier", "selma bouvier", "jaqueline bouvier", "herbert powell", "ling bouvier", "ned flanders", "maud flanders", "rod flanders", "todd flanders", "moe szyslak", "barney gumble", "monty burns", "waylon smithers", "lenny leonard", "carl carlson", "seymour skinner", "edna krabappel", "gary chalmers", "miss hoover", "willie", "otto mann", "apu nahasapeemapetilon", "nelson muntz", "milhouse van houten", "martin prince", "ralph wiggum", "timothy lovejoy", "clancy wiggum", "duffman", "krusty the clown", "sideshow bob"];
 
+var topics = [
+  "Homer Simpson",
+  "Marge Simpson",
+  "Bart Simpson",
+  "Lisa Simpson",
+  "Maggie Simpson"
+];
 
-var topics = ["Homer Simpson", "Marge Simpson", "Bart Simpson", "Lisa Simpson", "Maggie Simpson"];
+alert("Check the console for a list of Simpson Characters to choose from");
+console.log(characterscomp);
 
 // create buttons for initial topics
 createBtn();
 function createBtn() {
+  $(".container-button").empty();
   for (var i = 0; i < topics.length; i++) {
     var people = $("<button>");
-    people.addClass("btn btn-light")
+    people.addClass("btn btn-light");
     people.attr("data-person", topics[i]);
-    people.text(topics[i])
-    $(".container-button").append(people)
-  };
-};
+    people.text(topics[i]);
+    $(".container-button").append(people);
+  
+  }
 
-// // capture user input and create new button
-//=========================================================
-// $("#searchInput").submit(function (event) {
-//   var charactersearch = ("#searchInput").val("");
-//   $("#searchInput").val();
-//   createBtn(charactersearch);
-// });
+  // // capture user input and create new button
+  $("#sbutton").on("click", function (event) {
+    event.preventDefault();
+    var charactersearch = $("#searchInput").val().trim();
+    // charactersearch.addClass("btn btn-light");
+    // charactersearch.attr("data-person", topics[i]);
+    // charactersearch.text(topics[i]);
+    topics.push(charactersearch);
+    createBtn();
+  
+   
+  });
+
+};
 
 // click function to call to API for Gifs
 //i < 10 to only grab 10 images per brief
 // add gifs to html in container
 
-$("button").on("click", function () {
+$("button").on("click", function grab () {
+  $("#gifs-appear-here").empty();
   var person = $(this).attr("data-person");
-  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-    person + "&api_key=dc6zaTOxFJmzC&limit=10";
+  var queryURL =
+    "https://api.giphy.com/v1/gifs/search?q=" +
+    person +
+    "&api_key=dc6zaTOxFJmzC&limit=10";
 
   $.ajax({
     url: queryURL,
     method: "GET"
-  })
-    .then(function (response) {
-      var results = response.data;
-      for (var i = 0; i < 10; i++) {
-        var gifDiv = $("<div>");
-        var rating = results[i].rating;
-        var p = $("<p>").text("Rating: " + rating);
-        var personImage = $("<img>");
-        personImage.attr("id", "gifs")
-        personImage.attr("src", results[i].images.fixed_height.url)
-        gifDiv.prepend(p);
-        gifDiv.prepend(personImage);
-        $("#gifs-appear-here").prepend(gifDiv);
-      
-      }
-    });
+  }).then(function (response) {
+    var results = response.data;
+    for (var i = 0; i < 10; i++) {
+      var gifDiv = $("<div>");
+      var rating = results[i].rating;
+      var p = $("<p>").text("Rating: " + rating);
+      var personImage = $("<img>");
+      personImage.attr("id", "gifs");
+      personImage.attr("src", results[i].images.fixed_height.url);
+      gifDiv.prepend(p);
+      gifDiv.prepend(personImage);
+      $("#gifs-appear-here").prepend(gifDiv);
+    }
+  });
 });
-
-
-$("#sbutton").on("click", function () {
-  var search = val().attr("data-person");
-  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-    search + "&api_key=dc6zaTOxFJmzC&limit=10";
-
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  })
-    .then(function (response) {
-      var results = response.data;
-      for (var i = 0; i < 10; i++) {
-        var gifDiv = $("<div>");
-        var rating = results[i].rating;
-        var p = $("<p>").text("Rating: " + rating);
-        var personImage = $("<img>");
-        search.attr("src", results[i].images.fixed_height.url)
-        gifDiv.prepend(p);
-        gifDiv.prepend(personImage);
-        $("#gifs-appear-here").prepend(gifDiv);
-
-      }
-    });
-});
-
-
-
