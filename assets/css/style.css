@@ -5,7 +5,7 @@ body, html {
     background-size: cover;
   }
   
-  
+
   .lead{
   text-align: center;
    margin-top: 100px;
@@ -24,12 +24,15 @@ body, html {
   }
   
   .container-button{
-    margin-left: 35%;
-    margin-right: 35%; 
+    margin-left: 15%;
+    margin-right: 15%; 
     padding: 10px;
     font-family: 'Rock Salt', cursive;
     font-size: 15px;
-    width: 40%;
+    width: 80%;
+  }
+  .btn {
+      margin: 10px;
   }
   
   #searchInput{
