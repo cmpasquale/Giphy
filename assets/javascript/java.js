@@ -29,8 +29,11 @@ var topics = [
   "Maggie Simpson"
 ];
 
-alert("Check the console for a list of Simpson Characters to choose from");
-console.log(characterscomp);
+
+
+
+// alert("Check the console for a list of Simpson Characters to choose from");
+// console.log(characterscomp);
 
 // create buttons for initial topics
 createBtn();
@@ -44,20 +47,45 @@ function createBtn() {
     $(".container-button").append(people);
 
   }
+}
+// // capture user input and create new button
+$("#sbutton").on("click", function (event) {
+  event.preventDefault();
+  var charactersearch = $("#searchInput").val().trim().toLowerCase();
+  console.log(charactersearch);
 
-  // // capture user input and create new button
-  $("#sbutton").on("click", function (event) {
-    event.preventDefault();
-    var charactersearch = $("#searchInput").val().trim();
-    people.attr("data-person", topics[i]);
-    topics.push(charactersearch);
-    createBtn();
-    
-  
-
-  });
+  if (topics.indexOf(charactersearch) >= 0) {
+    // ("#searchInput").val("")
+    clearMe()
+    alert('Character is already Added')
 
 
+
+  }
+  else if (topics.indexOf(charactersearch) < 0) {
+
+    if (characterscomp.indexOf(charactersearch) >= 0) {
+
+      topics.push(charactersearch)
+      createBtn();
+      clearMe()
+      console.log(topics);
+
+
+
+    } else {
+      clearMe()
+      alert("This is not a simpsons Character")
+
+    }
+
+  }
+
+
+
+
+
+});
 
 // click function to call to API for Gifs
 //i < 10 to only grab 10 images per brief
@@ -83,7 +111,7 @@ $("button").on("click", function () {
       var personImage = $("<img>");
       personImage.attr("id", "gifs");
       personImage.attr("src", results[i].images.fixed_height_still.url);
-      personImage.attr("data-alt", results[i].images.fixed_height.url )
+      personImage.attr("data-alt", results[i].images.fixed_height.url)
       gifDiv.prepend(p);
       gifDiv.prepend(personImage);
       $("#gifs-appear-here").prepend(gifDiv);
@@ -97,9 +125,15 @@ $("button").on("click", function () {
     }
   });
 });
-  $("#cb").append(people);
+// $("#cb").append(people);
 
-};
+
+function clearMe() {
+  $("#searchInput").val("")
+
+}
+
+
 
 
 
