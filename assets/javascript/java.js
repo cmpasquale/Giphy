@@ -97,7 +97,7 @@ $("button").on("click", function () {
   var queryURL =
     "https://api.giphy.com/v1/gifs/search?q=" +
     person +
-    "&api_key=dc6zaTOxFJmzC&limit=10";
+    "&api_key=vRYMkt8tI5f2mULNneF5ebG8jemFv7US";
 
   $.ajax({
     url: queryURL,
